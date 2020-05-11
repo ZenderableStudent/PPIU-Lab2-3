@@ -1,0 +1,23 @@
+﻿<Window x:Class="PPIU_Lab2.EventsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPIU_Lab2"
+        mc:Ignorable="d"
+        Title="EventsPage" Height="450" Width="800">
+    <Grid>
+        <Label Content="Nazwa wydarzenia" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Agenda" HorizontalAlignment="Left" Margin="112,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Termin wydarzenia" HorizontalAlignment="Left" Margin="257,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Typ uczestnictwa" HorizontalAlignment="Left" Margin="366,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wyżywienie" HorizontalAlignment="Left" Margin="470,0,0,0" VerticalAlignment="Top"/>
+        <Button Content="ZAPISZ" HorizontalAlignment="Left" Margin="325,219,0,0" VerticalAlignment="Top" Width="140" Height="91"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="0,26,0,0"/>
+        <ComboBox HorizontalAlignment="Left" Margin="376,31,0,0" VerticalAlignment="Top" Width="99"/>
+        <ComboBox HorizontalAlignment="Left" Margin="475,31,0,0" VerticalAlignment="Top" Width="67"/>
+        <DatePicker HorizontalAlignment="Left" Margin="264,30,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="114,25,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="123" Width="145"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="PPIU_Lab2.AdminPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPIU_Lab2"
+        mc:Ignorable="d"
+        Title="AdminPage" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Obsługa użytkowników" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15"></Label>
+            <Button Content="Dodawanie" FontSize="15"></Button>
+            <Button Content="Usuwanie" FontSize="15"></Button>
+            <Button Content="Reset hasła" FontSize="15"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label Content="Obsługa wydarzeń" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15"></Label>
+            <Button Content="Dodawanie" FontSize="15"></Button>
+            <Button Content="Usuwanie" FontSize="15"></Button>
+            <Button Content="Modyfikacja" FontSize="15"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="Obsługa zapisów na wydarzenie" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15"></Label>
+            <Button Content="Potwierdzenie zapisu" FontSize="15"></Button>
+            <Button Content="Odrzucenie zapisu" FontSize="15"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -29,8 +29,8 @@
                 <TextBox Name="txbRola" Text="" Margin="5"></TextBox>
                 <Label Content="Płeć" Margin="5"></Label>
                 <WrapPanel Margin="5">
-                    <CheckBox Name="chbKobieta" Content="Kobieta  "></CheckBox>
-                    <CheckBox Name="chbMezczyzna" Content="Mężczyzna"></CheckBox>
+                    <CheckBox Name="chbKobieta" Content="Kobieta  " Checked="Female_Checked" IsChecked="False"></CheckBox>
+                    <CheckBox Name="chbMezczyzna" Content="Mężczyzna" Checked="Male_Checked" IsChecked="True"></CheckBox>
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
@@ -39,6 +39,8 @@
                 Click="btnRegister_Click" />
             <Button Content="Wyczyść" x:Name="btnEdit" Margin="5" 
                 Click="btnClear_Click" />
+            <Button Content="Baza danych" x:Name="btnDatabase" Margin="5" 
+                Click="btnDataBase_Click" />
         </WrapPanel>
     </Grid>
 </Window>

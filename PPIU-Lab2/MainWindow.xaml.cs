@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace PPIU_Lab2
 {
@@ -15,6 +16,22 @@ namespace PPIU_Lab2
         {
             InitializeComponent();
             InitBinding();
+        }
+
+        private void Male_Checked(object sender, RoutedEventArgs e)
+        {
+            if (chbMezczyzna.IsChecked == true)
+            {
+                chbKobieta.IsChecked = false;
+            }
+        }
+
+        private void Female_Checked(object sender, RoutedEventArgs e)
+        {
+            if (chbKobieta.IsChecked == true)
+            {
+                chbMezczyzna.IsChecked = false;
+            }
         }
 
         private void InitBinding()
@@ -35,24 +52,32 @@ namespace PPIU_Lab2
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: sprawdzenie czy dane istnieją w bazie
-            //TODO: porownanie haslo zwyklego i powtórzonego, jesli się zgadza to kod niżej, jeśli nie to popup z errorem:
-            DateTime dateTime = DateTime.UtcNow.Date;
-            DataRow oDataRow = m_oDataTable.NewRow();
-            oDataRow[1] = txbImie.Text;
-            oDataRow[2] = txbNazwisko.Text;
-            oDataRow[3] = txbEmail.Text;
-            oDataRow[4] = txbRola.Text;
-            //TODO: płeć będzie wybierana na podstawie danego checkboxa, do implementacji
-            oDataRow[5] = chbKobieta.IsChecked == true ? "Kobieta" : "Mężczyzna";
-            oDataRow[6] = txbLogin.Text;
-            oDataRow[7] = txbHaslo.Text;
-            oDataRow[8] = true;
-            oDataRow[9] = dateTime.ToString("dd/MM/yyyy");
-            m_oDataTable.Rows.Add(oDataRow);
-            m_oDataAdapter.Update(m_oDataSet);
-            var page = new DataPage();
-            page.Show();
+            if(chbKobieta.IsChecked == false && chbMezczyzna.IsChecked == false)
+            {
+                MessageBox.Show("Wybierz płeć!!");
+            }
+            else if (txbHaslo.Text == txbPotwHaslo.Text)
+            {
+                DateTime dateTime = DateTime.UtcNow.Date;
+                DataRow oDataRow = m_oDataTable.NewRow();
+                oDataRow[1] = txbImie.Text;
+                oDataRow[2] = txbNazwisko.Text;
+                oDataRow[3] = txbEmail.Text;
+                oDataRow[4] = "user";
+                oDataRow[5] = chbKobieta.IsChecked == true ? "Kobieta" : "Mężczyzna";
+                oDataRow[6] = txbLogin.Text;
+                oDataRow[7] = txbHaslo.Text;
+                oDataRow[8] = true;
+                oDataRow[9] = dateTime.ToString("dd/MM/yyyy");
+                m_oDataTable.Rows.Add(oDataRow);
+                m_oDataAdapter.Update(m_oDataSet);
+                var page = new DataPage();
+                page.Show();
+            }
+            else
+            {
+                MessageBox.Show("Źle powtórzone hasło!");
+            }
         }
 
         private void Window_Closing(object sender,
@@ -74,6 +99,12 @@ namespace PPIU_Lab2
             txbHaslo.Text = "";
             txbPotwHaslo.Text = "";
             txbRola.Text = "";
+        }
+
+        private void btnDataBase_Click(object sender, RoutedEventArgs e)
+        {
+            var page = new DataPage();
+            page.Show();
         }
     }
 }
