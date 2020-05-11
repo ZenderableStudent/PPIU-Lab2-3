@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LoginPage" Height="450" Width="800">
     <Grid>
-        <Button Content="Logowanie" HorizontalAlignment="Left" Margin="306,184,0,0" VerticalAlignment="Top" Width="176" Height="68" Click="Login_Click"/>
+        <Button Name="btLogowanie" Content="Logowanie" HorizontalAlignment="Left" Margin="306,184,0,0" VerticalAlignment="Top" Width="176" Height="68" Click="Login_Click"/>
         <Button Content="Rejestracja" HorizontalAlignment="Left" Margin="306,281,0,0" VerticalAlignment="Top" Width="176" Height="53" Click="Rejestracja_Click"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="306,68,0,0" TextWrapping="Wrap" Name="tbLogin" VerticalAlignment="Top" Width="176"/>
         <PasswordBox Name="psbHaslo" HorizontalAlignment="Left" Margin="306,120,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
@@ -15,5 +15,8 @@
         <Label Content="Login" HorizontalAlignment="Left" Margin="306,42,0,0" VerticalAlignment="Top"/>
         <Button Name="btHaslo" Content="Pokaż hasło" HorizontalAlignment="Left" Margin="306,151,0,0" VerticalAlignment="Top" Width="75" Click="PokazHaslo_Click"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="306,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="176" Name="tbShowedPass" Visibility="Hidden"/>
+        <Label Content="Pozostało prób logowania:" HorizontalAlignment="Left" Margin="308,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.51,0.461" Width="149"/>
+        <Label Name="lbProbyLogowania" Content="3" HorizontalAlignment="Left" Margin="457,10,0,0" VerticalAlignment="Top" Foreground="DarkGreen"/>
+        <Button Content="Notatka" HorizontalAlignment="Left" Margin="398,151,0,0" VerticalAlignment="Top" Width="75" Click="Notatka_Click"/>
     </Grid>
 </Window>

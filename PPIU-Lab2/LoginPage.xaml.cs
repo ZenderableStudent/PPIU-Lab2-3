@@ -13,22 +13,9 @@ namespace PPIU_Lab2
         public LoginPage()
         {
             InitializeComponent();
-            //InitBinding();
+            
         }
-        private void InitBinding()
-        {
-            SQLiteConnection oSQLiteConnection =
-                new SQLiteConnection("Data Source=D:\\Projects\\PPIU-Lab2\\PPIU-Lab2\\Database.s3db");
-            SQLiteCommand oCommand = oSQLiteConnection.CreateCommand();
-            oCommand.CommandText = "SELECT * FROM user";
-            m_oDataAdapter = new SQLiteDataAdapter(oCommand.CommandText,
-                oSQLiteConnection);
-            SQLiteCommandBuilder oCommandBuilder =
-                new SQLiteCommandBuilder(m_oDataAdapter);
-            m_oDataSet = new DataSet();
-            m_oDataAdapter.Fill(m_oDataSet);
-            m_oDataTable = m_oDataSet.Tables[0];
-        }
+       
         private void Window_Closing(object sender,
            System.ComponentModel.CancelEventArgs e)
         {
@@ -79,6 +66,7 @@ namespace PPIU_Lab2
             m_oDataAdapter.Fill(m_oDataSet);
             m_oDataTable = m_oDataSet.Tables[0];
             DataRow count = null;
+            bool czyUdaloSie = true;
             try
             {
                 count = m_oDataTable.Rows[0];
@@ -86,8 +74,9 @@ namespace PPIU_Lab2
             catch(Exception)
             {
                 count = null;
+                czyUdaloSie = false;
             }
-            if (count != null)
+            if (count != null && czyUdaloSie == true)
             {
                 succesLogin = true;
             }
@@ -112,6 +101,7 @@ namespace PPIU_Lab2
             m_oDataAdapter.Fill(m_oDataSet);
             m_oDataTable = m_oDataSet.Tables[0];
             DataRow count = null;
+            bool czyUdaloSie = true;
 
             try
             {
@@ -120,9 +110,10 @@ namespace PPIU_Lab2
             catch (Exception)
             {
                 count = null;
+                czyUdaloSie = false;
             }
 
-            if (count != null)
+            if (count != null && czyUdaloSie == true)
             {
                 succesHaslo = true;
             }
@@ -133,32 +124,46 @@ namespace PPIU_Lab2
             m_oDataAdapter.Dispose();
             m_oDataAdapter = null;
         }
+        int probyLogowania = 3;
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if (tbLogin.Text == "admin" && psbHaslo.Password == "admin") //jeśli admin
+            if (probyLogowania != 0)
             {
-                var page = new AdminPage();
-                page.Show();
-            }
-            else //jeśli user
-            {
-                checkingLogin();
-                checkingPassword();
-                if (succesLogin == true && succesHaslo == true)
+                if (tbLogin.Text == "admin" && psbHaslo.Password == "admin") //jeśli admin
                 {
-                    var page = new EventsPage();
+                    var page = new AdminPage();
                     page.Show();
                 }
-                else
+                else //jeśli user
                 {
-                    MessageBox.Show("Podane hasło lub login jest nieprawidłowe!");
+                    checkingLogin();
+                    checkingPassword();
+                    if (succesLogin == true && succesHaslo == true)
+                    {
+                        var page = new EventsPage();
+                        page.Show();
+                    }
+                    if (null != m_oDataAdapter)
+                    {
+                        m_oDataAdapter.Dispose();
+                        m_oDataAdapter = null;
+                    }
+                    else
+                    {
+                        probyLogowania--;
+                        lbProbyLogowania.Content = probyLogowania;
+                    }
                 }
             }
-            if (null != m_oDataAdapter)
+            else
             {
-                m_oDataAdapter.Dispose();
-                m_oDataAdapter = null;
+                btLogowanie.IsEnabled = false;
             }
+        }
+
+        private void Notatka_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Admin: (admin, admin); User: (user, user)!");
         }
     }
 }

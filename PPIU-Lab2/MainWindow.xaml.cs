@@ -3,6 +3,8 @@ using System.Data;
 using System.Data.SQLite;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Net.Mail;
+using System.Net;
 
 namespace PPIU_Lab2
 {
@@ -16,6 +18,22 @@ namespace PPIU_Lab2
         {
             InitializeComponent();
             InitBinding();
+        }
+
+        public static void emailSending(string mail)
+        {
+            string to = mail;
+            string from = "automailzenderable@gmail.com"; //trzeba wpisac swoj email i potwierdzic w ustawieniach bezpieczenstwa!
+            MailMessage wiadomosc = new MailMessage(from, to);
+            wiadomosc.Subject = "Potwierdzenie";
+            wiadomosc.Body = "Mail weryfikacyjny.";
+
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new NetworkCredential("automailzenderable@gmail.com", "pizza123"); //testowe dane, do testu trzeba wpisac wlasne i potwierdzic w ustawienaich bezpieczeństwa np. w Google!
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.Send(wiadomosc);
         }
 
         private void Male_Checked(object sender, RoutedEventArgs e)
@@ -71,6 +89,7 @@ namespace PPIU_Lab2
                 oDataRow[9] = dateTime.ToString("dd/MM/yyyy");
                 m_oDataTable.Rows.Add(oDataRow);
                 m_oDataAdapter.Update(m_oDataSet);
+                emailSending(txbEmail.Text);
                 var page = new DataPage();
                 page.Show();
             }

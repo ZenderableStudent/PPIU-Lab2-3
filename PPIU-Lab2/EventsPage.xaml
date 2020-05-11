@@ -11,13 +11,27 @@
         <Label Content="Agenda" HorizontalAlignment="Left" Margin="112,0,0,0" VerticalAlignment="Top"/>
         <Label Content="Termin wydarzenia" HorizontalAlignment="Left" Margin="257,0,0,0" VerticalAlignment="Top"/>
         <Label Content="Typ uczestnictwa" HorizontalAlignment="Left" Margin="366,0,0,0" VerticalAlignment="Top"/>
-        <Label Content="Wyżywienie" HorizontalAlignment="Left" Margin="470,0,0,0" VerticalAlignment="Top"/>
-        <Button Content="ZAPISZ" HorizontalAlignment="Left" Margin="325,219,0,0" VerticalAlignment="Top" Width="140" Height="91"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="0,26,0,0"/>
-        <ComboBox HorizontalAlignment="Left" Margin="376,31,0,0" VerticalAlignment="Top" Width="99"/>
-        <ComboBox HorizontalAlignment="Left" Margin="475,31,0,0" VerticalAlignment="Top" Width="67"/>
+        <Label Content="Wyżywienie" HorizontalAlignment="Left" Margin="470,0,0,0" VerticalAlignment="Top" Width="121"/>
+        <Button Content="ZAPISZ" HorizontalAlignment="Left" Margin="325,219,0,0" VerticalAlignment="Top" Width="140" Height="91" Click="PrzypisanieDoUzytkownika_Click"/>
+        <ComboBox Name="cbWydarzenia" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="0,26,0,0" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem>Zawody sportowe</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Zawody strażackie</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="376,31,0,0" VerticalAlignment="Top" Width="99">
+            <ComboBoxItem>Słuchacz</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Autor</ComboBoxItem>
+            <ComboBoxItem>Sponsor</ComboBoxItem>
+            <ComboBoxItem>Organizator</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="475,31,0,0" VerticalAlignment="Top" Width="116">
+            <ComboBoxItem>Bez preferencji</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Wegetariańskie</ComboBoxItem>
+            <ComboBoxItem>Bez glutenu</ComboBoxItem>
+        </ComboBox>
         <DatePicker HorizontalAlignment="Left" Margin="264,30,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="114,25,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="123" Width="145"/>
+        <TextBlock Name="Agenda" HorizontalAlignment="Left" Margin="114,25,0,0" TextWrapping="Wrap" Text="Super opis wydarzenia" VerticalAlignment="Top" Height="123" Width="145">
+            
+        </TextBlock>
 
     </Grid>
 </Window>
