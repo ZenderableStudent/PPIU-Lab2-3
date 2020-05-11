@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Net.Mail;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace PPIU_Lab2
 {
@@ -13,10 +14,11 @@ namespace PPIU_Lab2
         private SQLiteDataAdapter m_oDataAdapter = null;
         private DataSet m_oDataSet = null;
         private DataTable m_oDataTable = null;
+        private bool goodEmail;
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             InitBinding();
         }
 
@@ -68,13 +70,20 @@ namespace PPIU_Lab2
             m_oDataTable = m_oDataSet.Tables[0];
         }
 
+        public bool IsValidEmailAddress(string s)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            return regex.IsMatch(s);
+        }
+        
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            if(chbKobieta.IsChecked == false && chbMezczyzna.IsChecked == false)
+            goodEmail = IsValidEmailAddress(txbEmail.Text);
+            if (chbKobieta.IsChecked == false && chbMezczyzna.IsChecked == false)
             {
                 MessageBox.Show("Wybierz płeć!!");
             }
-            else if (txbHaslo.Text == txbPotwHaslo.Text)
+            else if (txbHaslo.Text == txbPotwHaslo.Text && goodEmail == true)
             {
                 DateTime dateTime = DateTime.UtcNow.Date;
                 DataRow oDataRow = m_oDataTable.NewRow();
@@ -89,13 +98,21 @@ namespace PPIU_Lab2
                 oDataRow[9] = dateTime.ToString("dd/MM/yyyy");
                 m_oDataTable.Rows.Add(oDataRow);
                 m_oDataAdapter.Update(m_oDataSet);
-                emailSending(txbEmail.Text);
+                //emailSending(txbEmail.Text);
                 var page = new DataPage();
                 page.Show();
             }
-            else
+            else if (txbHaslo.Text != txbPotwHaslo.Text && goodEmail == true)
             {
                 MessageBox.Show("Źle powtórzone hasło!");
+            }
+            else if (goodEmail == false && txbHaslo.Text == txbPotwHaslo.Text)
+            {
+                MessageBox.Show("Niepoprawny adres e-mail!");
+            }
+            else if(txbHaslo.Text != txbPotwHaslo.Text && goodEmail == false)
+            {
+                MessageBox.Show("Niepoprawny adres e-mail oraz źle powtórzone hasła!");
             }
         }
 
