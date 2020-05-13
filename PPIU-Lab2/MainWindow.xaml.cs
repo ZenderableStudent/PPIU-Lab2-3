@@ -98,7 +98,7 @@ namespace PPIU_Lab2
                 oDataRow[9] = dateTime.ToString("dd/MM/yyyy");
                 m_oDataTable.Rows.Add(oDataRow);
                 m_oDataAdapter.Update(m_oDataSet);
-                //emailSending(txbEmail.Text);
+                emailSending(txbEmail.Text);
                 var page = new DataPage();
                 page.Show();
             }
